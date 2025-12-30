@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fake News Predictor</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f8fafc, #eef4ff);
+            color: #1f2937;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 900px;
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 40px 50px;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: 700;
+            color: #1e40af;
+        }
+
+        .header p {
+            margin-top: 8px;
+            font-size: 16px;
+            color: #4b5563;
+        }
+
+        .info-bar {
+            background: #f1f5ff;
+            border-left: 4px solid #3b82f6;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #374151;
+            margin-bottom: 25px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 200px;
+            padding: 16px;
+            font-size: 15px;
+            border-radius: 10px;
+            border: 1px solid #d1d5db;
+            resize: none;
+            transition: 0.2s ease;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+        }
+
+        button {
+            width: 100%;
+            margin-top: 22px;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            background: linear-gradient(90deg, #2563eb, #3b82f6);
+            color: white;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px rgba(37, 99, 235, 0.3);
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .real {
+            background: #ecfdf5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+
+        .fake {
+            background: #fef2f2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+
+        .confidence {
+            margin-top: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            opacity: 0.85;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 35px;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        footer span {
+            color: #2563eb;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="header">
+        <h1>📰 Fake News Predictor</h1>
+        <p>AI-powered verification using Natural Language Processing</p>
+    </div>
+
+    <div class="info-bar">
+        Paste the full news article or headline below.  
+        The model analyzes linguistic patterns to classify the news.
+    </div>
+
+    <form method="POST">
+        <textarea 
+            name="news" 
+            placeholder="Enter news content here..."
+            required>{{ news_text }}</textarea>
+
+        <button type="submit">Analyze News</button>
+    </form>
+
+    {% if prediction %}
+        <div class="result {{ 'real' if prediction == 'Real News' else 'fake' }}">
+            {{ prediction }}
+            <div class="confidence">
+                Prediction generated using TF-IDF + Naive Bayes
+            </div>
+        </div>
+    {% endif %}
+
+    <footer>
+        Built with <span>Machine Learning & NLP</span> · End-to-End Project
+    </footer>
+</div>
+
+</body>
+</html>

@@ -13,7 +13,6 @@ from src.exception import CustomException
 nltk.download("stopwords")
 nltk.download("wordnet")
 
-
 class PredictPipeline:
     def __init__(self):
         try:

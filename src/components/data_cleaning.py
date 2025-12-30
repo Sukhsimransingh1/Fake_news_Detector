@@ -49,9 +49,7 @@ class DataCleaning:
             df["content"] = df["content"].apply(self.clean_text)
 
             df = df[["content", "label"]]
-
             df.to_csv(self.output_path, index=False)
-
             logging.info(f"Cleaned data saved at {self.output_path}")
             logging.info("===== Data Cleaning Completed =====")
 
